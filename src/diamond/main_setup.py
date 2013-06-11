@@ -159,11 +159,7 @@ def configureKey(key):
 
 ################################################################################
 
-if __name__ == "__main__":
-
-    if setproctitle:
-        setproctitle('diamond-setup')
-
+def main():
     # Initialize Options
     parser = optparse.OptionParser()
     parser.add_option("-c", "--configfile",
@@ -273,3 +269,8 @@ if __name__ == "__main__":
             sys.exit()
         except:
             continue
+
+if __name__ == "__main__":
+    if setproctitle:
+        setproctitle('diamond-setup')
+    main()
