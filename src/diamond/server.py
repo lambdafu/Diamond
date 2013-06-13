@@ -63,6 +63,13 @@ class Server(object):
                 config['handlers'][handlername].merge(
                     configobj.ConfigObj(configfile))
 
+        # Evil hack to have a default that works if installed as a
+        # multiversion egg.
+        if 'collectors_path' not in config:
+            collpath = os.path.join(os.path.dirname(diamond.__file__), '..',
+                                    'share', 'diamond', 'collectors')
+            config['collectors_path'] = os.path.abspath(collpath)
+
         self.config = config
 
     def load_handler(self, fqcn):
